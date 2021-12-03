@@ -1,0 +1,88 @@
+namespace JUEGO_DEL_AHORCADO
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int aciertos, errores, m; 
+            string palabra; 
+            bool correct; 
+            char letter; 
+            string Sí = "si";
+
+
+            while (Sí == "si")
+            {
+                Console.Clear();
+                Console.WriteLine("------------BIENVENIDO AL JUEGO DEL AHORCADO------------");
+
+                Console.WriteLine("Escribe la palabra con la que quieras jugar: ");
+                palabra = Console.ReadLine();
+                if (palabra.Length>25)
+                {
+                    Console.WriteLine("La palabra es muy grande, prueba con otra: ");
+                    Console.ReadLine();
+                }
+                Console.Clear();
+                for (m=0; m< palabra.Length; m++)
+                {
+                    Console.SetCursorPosition(palabra.Length + m, 1);
+                    Console.WriteLine("-");
+                }
+                errores = 5;
+                aciertos = 0;
+
+                while (aciertos < palabra.Length && errores > 0)
+                {
+                    Console.WriteLine("Introduce alguna letra del abecedario: ");
+                    letter = Console.ReadKey().KeyChar;
+                    Console.Clear();
+                    correct = false;
+
+                    for (m = 0; m < palabra.Length; m++)
+                    {
+                        if (letter == palabra[m])
+                        {
+                            correct = true;
+                            aciertos++;
+                            Console.WriteLine("ACERTASTE!! " ,aciertos +1); 
+                            Console.SetCursorPosition(palabra.Length + m, 1);
+                            Console.WriteLine(palabra[m]);
+                        }
+                    }
+                    if (correct != true)
+                    {
+                        errores --;
+                        Console.WriteLine( errores);
+                    }
+                }
+
+                if (errores == 0)
+                {
+                    Console.WriteLine("SUERTE PARA LA PROXIMA, HAS PERDIDO :c ");
+                }
+                if (aciertos == palabra.Length)
+                {
+                    Console.Clear();
+                    Console.WriteLine("FELICITACIONES!! HAS GANADO!!");
+                    Console.WriteLine($"la palabra es: {palabra}");
+                    Console.WriteLine("presiona any tecla para continuar c:");
+                }
+                Console.ReadKey();
+                Console.Clear();
+               
+                Console.WriteLine("Quieres volver a jugar?");
+                Console.WriteLine("Escribe sí si si XD ");
+                Console.WriteLine("Escribe No si no XD ");
+                Sí=Console.ReadLine();
+                
+                Console.Clear();
+                
+
+            }
+            Console.WriteLine("GRACIAS POR JUGAR ESTE HUMILDE JUEGUITO ECHO CON TODO EL CORAZON DEL MUNDO XD");
+            Console.ReadLine();
+
+        }
+    }
+}
